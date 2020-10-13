@@ -90,6 +90,7 @@ def sendMessage():
     port.write(b''+str(message).encode()+b'\r\n') # Message
     rcv = port.read(10)
     print (rcv)
+    port.write(b"\x1A") # Enable to send SMS
     return content
 
 @app.route('/relay/one', methods=['POST'])
