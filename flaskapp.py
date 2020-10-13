@@ -70,7 +70,7 @@ def sendMessage():
     message = content['message']
     number  = content['number']
     # Sending a message to a particular Number
-    port.write(b'AT+CMGS="'+number+'"'+b'\r\n')
+    port.write(b'AT+CMGS="'+number.encode()+'"'+b'\r\n')
     rcv = port.read(10)
     print (rcv)
     time.sleep(1)
