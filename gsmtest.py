@@ -30,7 +30,6 @@ print (rcv)
 time.sleep(1)
 
 # Sending a message to a particular Number
-
 port.write(b'AT+CMGS="+254702261679"'+b'\r\n')
 rcv = port.read(10)
 print (rcv)
@@ -50,3 +49,7 @@ for i in range(10):
 #         #your code
 # except KeyboardInterrupt:
 #     break
+
+'''
+curl -i -X POST -H "Content-Type: application/json" -d "{\"message\":\"hello\",\"number\":\"+254702261679\"}" http://localhost:5000/send
+'''

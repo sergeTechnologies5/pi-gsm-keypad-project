@@ -9,8 +9,6 @@ import time
 import serial
 import RPi.GPIO as GPIO 
 import os
-
-import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from time import sleep  # Import the sleep function from the time module
 
 #RELAY_1 = 16 #G3
@@ -69,7 +67,16 @@ def start():
 @app.route('/send', methods=['POST'])
 def sendMessage():
     content = request.json
-    print(content)
+    message = content.message
+    number  = content.number
+    # Sending a message to a particular Number
+    port.write(b'AT+CMGS="'+number+'"'+b'\r\n')
+    rcv = port.read(10)
+    print (rcv)
+    time.sleep(1)
+    port.write(b'{}'.format(message)+b'\r\n') # Message
+    rcv = port.read(10)
+    print (rcv)
     return "Message sent"
 
 @app.route('/relay/one', methods=['POST'])
