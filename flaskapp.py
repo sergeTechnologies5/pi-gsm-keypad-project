@@ -67,8 +67,8 @@ def start():
 @app.route('/send', methods=['POST'])
 def sendMessage():
     content = request.get_json()
-    message = content.message
-    number  = content.number
+    message = content['message']
+    number  = content['number']
     # Sending a message to a particular Number
     port.write(b'AT+CMGS="'+number+'"'+b'\r\n')
     rcv = port.read(10)
