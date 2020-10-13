@@ -41,7 +41,9 @@ class KeyPad:
         rows = [digitalio.DigitalInOut(x) for x in (board.D21, board.D20, board.D26, board.D19)]
         keys = ((1, 2, 3), (4, 5, 6), (7, 8, 9), ("*", 0, "#"))
         keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
-        print(self.password)
+        compare = lambda a,b: len(a)==len(b) and len(a)==sum([1 for i,j in zip(a,b) if i==j])
+        if compare(self.password, set(['7','8','9',4''])):
+            print('true')
         password = set()
         p = ''
         while True :
