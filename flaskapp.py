@@ -25,7 +25,7 @@ class KeyPad:
             keys = keypad.pressed_keys
             if keys:
                 password.update(str(keys))
-                if password.len() == 4 :
+                if len(password) == 4 :
                     r = requests.post(self.url,data=str("".join(password)))
                     password.clear()
                     print('Sending {}'.format(r.status_code))
