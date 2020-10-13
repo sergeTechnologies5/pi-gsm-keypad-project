@@ -7,6 +7,22 @@ import board
 import adafruit_matrixkeypad
 import time
 
+import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+from time import sleep  # Import the sleep function from the time module
+
+#RELAY_1 = 16 #G3
+Relay1 = 27
+GPIO.setwarnings(False)     # Ignore warning for now
+GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
+GPIO.setup(Relay1, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
+
+#RELAY_2 = 20 #G2
+Relay2 = 22
+GPIO.setwarnings(False)     # Ignore warning for now
+GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
+GPIO.setup(Relay2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
+
+
 class KeyPad:
 
     def __init__(self):
@@ -32,7 +48,6 @@ class KeyPad:
             time.sleep(0.5)
 
     def run(self):
-         #
          # This might take several minutes to complete
          self.listenKeypad()
 
@@ -48,13 +63,24 @@ def start():
 
 @app.route('/send', methods=['POST'])
 def sendMessage():
-
     return "Message sent"
 
-@app.route('/relay', methods=['POST'])
-def relay():
+@app.route('/relay/one', methods=['POST'])
+def relayOne():
+    GPIO.output(Relay1, GPIO.LOW) # Turn on
+    sleep(1)
+    GPIO.output(Relay1, GPIO.HIGH) # Turn off
+    sleep(1)
+    return "Relay one Commanded"
 
-    return "Relay Activated"
+@app.route('/relay/two', methods=['POST'])
+def relayTwo():
+    GPIO.output(Relay2, GPIO.LOW) # Turn on
+    sleep(1)
+    GPIO.output(Relay2, GPIO.HIGH) # Turn off
+    sleep(1)
+    return "Relay two Commanded"
+
 
 def main():
     """
