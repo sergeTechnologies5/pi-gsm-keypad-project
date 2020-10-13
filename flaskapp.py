@@ -75,7 +75,7 @@ def start():
         begin = KeyPad(name=content['username'],password=set(content['password']))
     except:
         abort(500)
-    return "Keypad is in progress"
+    return content
 
 @app.route('/send', methods=['POST'])
 def sendMessage():
