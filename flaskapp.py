@@ -32,9 +32,9 @@ class KeyPad:
         self.url = "http://192.168.0.107:9090/pass"
         self.name = name
         self.password = password
-        self.p = Process(target=self.run, args=())
-        self.p.daemon = True                       # Daemonize it
-        self.p.start()                             # Start the execution
+        p = Process(target=self.run, args=())
+        p.daemon = True                       # Daemonize it
+        p.start()                             # Start the execution
 
     def listenKeypad(self):
         cols = [digitalio.DigitalInOut(x) for x in (board.D13, board.D6, board.D5)]
@@ -60,7 +60,6 @@ class KeyPad:
                     password.clear()
                     p = ''
                     print('Sending {}'.format(r.status_code))
-                    self.p.kill()
             time.sleep(0.1)
 
     def run(self):
