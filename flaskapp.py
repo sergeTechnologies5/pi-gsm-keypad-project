@@ -6,7 +6,11 @@ import digitalio
 import board
 import adafruit_matrixkeypad
 import time
+import serial
+import RPi.GPIO as GPIO 
+import os
 
+GPIO.setmode(GPIO.BOARD)
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from time import sleep  # Import the sleep function from the time module
 
@@ -22,6 +26,8 @@ GPIO.setwarnings(False)     # Ignore warning for now
 GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
 GPIO.setup(Relay2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
 
+# Enable Serial Communication
+port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 
 class KeyPad:
 
@@ -45,7 +51,7 @@ class KeyPad:
                     r = requests.post(self.url,data=str("".join(password)))
                     password.clear()
                     print('Sending {}'.format(r.status_code))
-            time.sleep(0.5)
+            time.sleep(0.1)
 
     def run(self):
          # This might take several minutes to complete
@@ -63,6 +69,8 @@ def start():
 
 @app.route('/send', methods=['POST'])
 def sendMessage():
+    content = request.json
+    print(content)
     return "Message sent"
 
 @app.route('/relay/one', methods=['POST'])
