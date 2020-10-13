@@ -77,7 +77,7 @@ def sendMessage():
     port.write(b''+str(message.encoding())+b'\r\n') # Message
     rcv = port.read(10)
     print (rcv)
-    return "Message sent"
+    return content
 
 @app.route('/relay/one', methods=['POST'])
 def relayOne():
