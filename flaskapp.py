@@ -41,14 +41,17 @@ class KeyPad:
         keys = ((1, 2, 3), (4, 5, 6), (7, 8, 9), ("*", 0, "#"))
         keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
         password = set()
+        p = ''
         while True :
             keys = keypad.pressed_keys
             if keys:
                 password.add(str(keys))
+                p.join(password.pop())
                 if len(password) == 4 :
-                    data = {'username':self.name,'password':str("".join(password))}
+                    data = {'username':self.name,'password':str("".join(p))}
                     r = requests.post(self.url,data=data)
                     password.clear()
+                    p = ''
                     print('Sending {}'.format(r.status_code))
             time.sleep(0.1)
 
