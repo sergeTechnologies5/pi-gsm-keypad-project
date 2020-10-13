@@ -70,11 +70,11 @@ def sendMessage():
     message = content['message']
     number  = content['number']
     # Sending a message to a particular Number
-    port.write(b'AT+CMGS="+254702261679"'+b'\r\n')
+    port.write(b'AT+CMGS='+str(number.encoding())+b'\r\n')
     rcv = port.read(10)
     print (rcv)
     time.sleep(1)
-    port.write(b'Hello Ndege Technologies'+b'\r\n') # Message
+    port.write(b''+str(message.encoding())+b'\r\n') # Message
     rcv = port.read(10)
     print (rcv)
     return "Message sent"
