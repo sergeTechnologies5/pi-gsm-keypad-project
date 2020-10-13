@@ -5,6 +5,7 @@ import requests
 import digitalio
 import board
 import adafruit_matrixkeypad
+import time
 
 class KeyPad:
 
