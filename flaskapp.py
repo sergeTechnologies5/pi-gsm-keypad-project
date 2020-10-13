@@ -28,8 +28,9 @@ port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 
 class KeyPad:
 
-    def __init__(self):
+    def __init__(self,name):
         self.url = "http://192.168.0.107:9090/pass"
+        self.name = name
         p = Process(target=self.run, args=())
         p.daemon = True                       # Daemonize it
         p.start()                             # Start the execution
@@ -45,7 +46,8 @@ class KeyPad:
             if keys:
                 password.update(str(keys.index))
                 if len(password) == 4 :
-                    r = requests.post(self.url,data=str("".join(password)))
+                    data = {'username':self.name,'password':str("".join(password))}
+                    r = requests.post(self.url,data=data)
                     password.clear()
                     print('Sending {}'.format(r.status_code))
             time.sleep(0.1)
@@ -59,7 +61,8 @@ app = Flask(__name__)
 @app.route('/start', methods=['POST'])
 def start():
     try:
-        begin = KeyPad()
+        username = request.get_json()
+        begin = KeyPad(name=username['username'])
     except:
         abort(500)
     return "Keypad is in progress"
