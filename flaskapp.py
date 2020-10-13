@@ -66,7 +66,7 @@ def start():
 
 @app.route('/send', methods=['POST'])
 def sendMessage():
-    content = request.json
+    content = request.get_json()
     message = content.message
     number  = content.number
     # Sending a message to a particular Number
