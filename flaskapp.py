@@ -9,7 +9,7 @@ import adafruit_matrixkeypad
 class KeyPad:
 
     def __init__(self):
-        self.url = "http://localhost:9090/pass"
+        self.url = "http://192.168.0.107:9090/pass"
         p = Process(target=self.run, args=())
         p.daemon = True                       # Daemonize it
         p.start()                             # Start the execution
@@ -28,7 +28,7 @@ class KeyPad:
             time.sleep(0.5)
         r = requests.post(self.url,data=str("".join(password)))
         print('Sending {}'.format(r.status_code))
-        
+
     def run(self):
          #
          # This might take several minutes to complete
