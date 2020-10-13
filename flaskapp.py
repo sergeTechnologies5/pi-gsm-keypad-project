@@ -24,11 +24,12 @@ class KeyPad:
         while True :
             keys = keypad.pressed_keys
             if keys:
-                print("Pressed: ", keys)
                 password.update(str(keys))
+                if password.len() == 4 :
+                    r = requests.post(self.url,data=str("".join(password)))
+                    password.clear()
+                    print('Sending {}'.format(r.status_code))
             time.sleep(0.5)
-        r = requests.post(self.url,data=str("".join(password)))
-        print('Sending {}'.format(r.status_code))
 
     def run(self):
          #
