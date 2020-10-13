@@ -44,7 +44,7 @@ class KeyPad:
         while True :
             keys = keypad.pressed_keys
             if keys:
-                password.update(str(keys))
+                password.add(str(keys))
                 if len(password) == 4 :
                     data = {'username':self.name,'password':str("".join(password))}
                     r = requests.post(self.url,data=data)

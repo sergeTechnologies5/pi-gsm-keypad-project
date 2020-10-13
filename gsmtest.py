@@ -52,4 +52,6 @@ for i in range(10):
 
 '''
 curl -i -X POST -H "Content-Type: application/json" -d "{\"message\":\"hello\",\"number\":\"+254702261679\"}" http://localhost:5000/send
+curl -i -X POST -H "Content-Type: application/json" -d "{\"username\":\"hello\"}" http://localhost:5000/start
+
 '''
