@@ -29,7 +29,7 @@ port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 class KeyPad:
 
     def __init__(self,name,password):
-        self.url = "http://192.168.0.107:9090/pass"
+        self.url = "http://192.168.43.196:9090/pass"
         self.name = name
         self.password = password
         p = Process(target=self.run, args=())
