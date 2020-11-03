@@ -131,6 +131,7 @@ def bazar():
     sleep(1)
     GPIO.output(Bazar2, GPIO.HIGH) # Turn off
     sleep(1)
+    GPIO.output(Bazar2, GPIO.LOW) # Turn on
     return "Relay two Commanded"
 
 def main():
