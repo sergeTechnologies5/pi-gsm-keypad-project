@@ -4,9 +4,9 @@ from multiprocessing import Process
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-pir = 23
+pr = 23
 bazar = 24
-GPIO.setup(pir, GPIO.IN)  # Read output from PIR motion sensor
+GPIO.setup(pr, GPIO.IN)  # Read output from PIR motion sensor
 GPIO.setup(bazar, GPIO.OUT)  # LED output pin
 
 
@@ -19,7 +19,7 @@ class Pir:
 
     def startDetectingMotion(self):
         while True:
-            i = GPIO.input(pir)
+            i = GPIO.input(pr)
             if i == 0:  # When output from motion sensor is LOW
                 print("No intruders", i)
                 GPIO.output(bazar, 0)  # Turn OFF LED
