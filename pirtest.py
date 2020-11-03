@@ -33,4 +33,5 @@ class Pir:
         # This might take several minutes to complete
         self.startDetectingMotion()
 
-pir = Pir()
+if __name__ == "__main__":
+    pir = Pir()
