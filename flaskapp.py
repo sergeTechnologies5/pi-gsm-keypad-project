@@ -27,7 +27,7 @@ GPIO.setup(Relay2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output 
 Bazar2 = 24
 GPIO.setwarnings(False)     # Ignore warning for now
 GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
-GPIO.setup(Bazar2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
+GPIO.setup(Bazar2, GPIO.OUT, initial=GPIO.LOW)     # Set pin 8 to be an output pin and set initial value to high (off)
 
 
 # Enable Serial Communication
