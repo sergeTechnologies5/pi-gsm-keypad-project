@@ -94,7 +94,7 @@ def sendMessage():
     time.sleep(1)
     number = "AT+CMGS="+number
     # Sending a message to a particular Number
-    port.write(number.encode('ascii')+b'\r\n')
+    port.write(b'AT+CMGS="+254702261679"'+b'\r\n')
     time.sleep(1)
 
     port.write(message.encode('ascii')+b'\r\n') # Message
