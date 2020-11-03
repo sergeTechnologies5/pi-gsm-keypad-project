@@ -40,8 +40,7 @@ class KeyPad:
         self.password = password
         p = Process(target=self.run, args=())
         p.daemon = True                       # Daemonize it
-        if not p:
-            p.start()                             # Start the execution
+        p.start()                             # Start the execution
 
     def listenKeypad(self):
         cols = [digitalio.DigitalInOut(x)
