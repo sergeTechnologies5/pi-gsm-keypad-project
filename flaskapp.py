@@ -101,7 +101,7 @@ def sendMessage():
     port.write(b'AT+CMGS='+number.encode('ascii')+b'\r\n')
     time.sleep(1)
 
-    port.write(b'Hello Ndege Technologies'+b'\r\n') # Message
+    port.write(message.encode('ascii')+b'\r\n') # Message
     print (rcv)
     port.write(b"\x1A") # Enable to send SMS
     return content
