@@ -11,6 +11,8 @@ import RPi.GPIO as GPIO
 import os
 from time import sleep  # Import the sleep function from the time module
 
+from pirtest import Pir
+
 #RELAY_1 = 16 #G3
 Relay1 = 27
 GPIO.setwarnings(False)     # Ignore warning for now
@@ -22,15 +24,6 @@ Relay2 = 22
 GPIO.setwarnings(False)     # Ignore warning for now
 GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
 GPIO.setup(Relay2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
-
-#Bazar_2 = 20 #G2
-pir = 23
-Bazar2 = 24
-GPIO.setwarnings(False)     # Ignore warning for now
-GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
-GPIO.setup(pir, GPIO.IN) 
-GPIO.setup(Bazar2, GPIO.OUT, initial=GPIO.LOW)     # Set pin 8 to be an output pin and set initial value to high (off)
-
 
 # Enable Serial Communication
 port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
@@ -127,20 +120,13 @@ def relayTwo():
     sleep(1)
     return "Relay two Commanded"
 
-@app.route('/bazar', methods=['POST'])
-def bazar():
-    GPIO.output(Bazar2, GPIO.LOW) # Turn on
-    sleep(1)
-    GPIO.output(Bazar2, GPIO.HIGH) # Turn off
-    sleep(1)
-    GPIO.output(Bazar2, GPIO.LOW) # Turn on
-    return "Relay two Commanded"
-
 def main():
     """
     Main entry point into program execution
     PARAMETERS: none
     """
+    pir = Pir()
+    pir.run()
     app.run(debug=True,host='0.0.0.0',threaded=True)
 
 main()
