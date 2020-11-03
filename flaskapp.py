@@ -83,11 +83,6 @@ def sendMessage():
     message = content['message']
     number  = content['number']
 
-    port.write(b'ATE0'+b'\r\n') # Disable the Echo
-    rcv = port.read(10)
-    print (rcv)
-    time.sleep(1)
-
     port.write(b'AT+CMGF=1'+b'\r\n') # Select Message format as Text mode
     rcv = port.read(10)
     print (rcv)
@@ -98,7 +93,7 @@ def sendMessage():
     print (rcv)
     time.sleep(1)
     # Sending a message to a particular Number
-    port.write(b'AT+CMGS='+number.encode('ascii')+b'\r\n')
+    port.write(b'AT+CMGS="+254702261679"'+b'\r\n')
     time.sleep(1)
 
     port.write(message.encode('ascii')+b'\r\n') # Message
