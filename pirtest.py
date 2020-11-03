@@ -36,4 +36,4 @@ class Pir:
 
 if __name__ == "__main__":
     pir = Pir()
-    Pir.run()
+    pir.run()
