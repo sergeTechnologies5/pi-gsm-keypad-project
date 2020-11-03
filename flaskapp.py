@@ -24,7 +24,7 @@ GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
 GPIO.setup(Relay2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
 
 #Bazar_2 = 20 #G2
-Bazar2 = 20
+Bazar2 = 24
 GPIO.setwarnings(False)     # Ignore warning for now
 GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
 GPIO.setup(Bazar2, GPIO.OUT, initial=GPIO.LOW)     # Set pin 8 to be an output pin and set initial value to high (off)
@@ -126,7 +126,7 @@ def relayTwo():
     return "Relay two Commanded"
 
 @app.route('/bazar', methods=['POST'])
-def relayTwo():
+def bazar():
     GPIO.output(Bazar2, GPIO.LOW) # Turn on
     sleep(1)
     GPIO.output(Bazar2, GPIO.HIGH) # Turn off
