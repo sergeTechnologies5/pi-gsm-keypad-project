@@ -24,7 +24,6 @@ class Pir:
                 GPIO.output(bazar, 0)  # Turn OFF LED
                 time.sleep(0.1)
             elif i == 1:  # When output from motion sensor is HIGH
-                print("Intruder detected", i)
                 GPIO.output(bazar, 1)  # Turn ON LED
                 time.sleep(0.1)
 
