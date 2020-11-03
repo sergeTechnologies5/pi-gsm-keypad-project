@@ -32,9 +32,7 @@ time.sleep(1)
 # Sending a message to a particular Number
 port.write(b'AT+CMGS="+254702261679"'+b'\r\n')
 time.sleep(1)
-
 port.write(b'Hello Ndege Technologies'+b'\r\n') # Message
-
 
 port.write(b"\x1A") # Enable to send SMS
 for i in range(10):

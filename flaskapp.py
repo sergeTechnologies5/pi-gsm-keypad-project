@@ -92,18 +92,16 @@ def sendMessage():
     rcv = port.read(10)
     print (rcv)
     time.sleep(1)
-    
+
     port.write(b'AT+CNMI=2,2,0,0,0'+b'\r\n') # New SMS Message Indications
     rcv = port.read(10)
     print (rcv)
     time.sleep(1)
     # Sending a message to a particular Number
-    port.write(b'AT+CMGS='+str(number).encode()+b'\r\n')
-    rcv = port.read(10)
-    print (rcv)
+    port.write(b'AT+CMGS="+254702261679"'+b'\r\n')
     time.sleep(1)
-    port.write(b''+str(message).encode()+b'\r\n') # Message
-    rcv = port.read(10)
+
+    port.write(b'Hello Ndege Technologies'+b'\r\n') # Message
     print (rcv)
     port.write(b"\x1A") # Enable to send SMS
     return content
