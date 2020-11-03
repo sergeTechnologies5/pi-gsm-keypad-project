@@ -57,6 +57,7 @@ class KeyPad:
         while True:
             keys = keypad.pressed_keys
             if keys:
+                print("Pressed: ", keys)
                 for key in keys:
                     password.add(str(key))
                 if len(password) == 4:
