@@ -24,9 +24,11 @@ GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
 GPIO.setup(Relay2, GPIO.OUT, initial=GPIO.HIGH)     # Set pin 8 to be an output pin and set initial value to high (off)
 
 #Bazar_2 = 20 #G2
+pir = 23
 Bazar2 = 24
 GPIO.setwarnings(False)     # Ignore warning for now
 GPIO.setmode(GPIO.BCM)    # Use physical pin numbering
+GPIO.setup(pir, GPIO.IN) 
 GPIO.setup(Bazar2, GPIO.OUT, initial=GPIO.LOW)     # Set pin 8 to be an output pin and set initial value to high (off)
 
 
