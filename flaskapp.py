@@ -153,7 +153,7 @@ def main():
     Main entry point into program execution
     PARAMETERS: none
     """
-    pir = Pir()
+    # pir = Pir()
     app.run(debug=True, host='0.0.0.0', threaded=True)
 
 
