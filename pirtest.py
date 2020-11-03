@@ -17,7 +17,7 @@ class Pir:
         p.daemon = True                       # Daemonize it
         p.start()
 
-    def listenKeypad(self):
+    def startDetectingMotion(self):
         while True:
             i = GPIO.input(pir)
             if i == 0:  # When output from motion sensor is LOW
@@ -29,5 +29,8 @@ class Pir:
                 GPIO.output(bazar, 1)  # Turn ON LED
                 time.sleep(0.1)
 
+    def run(self):
+        # This might take several minutes to complete
+        self.startDetectingMotion()
 
 pir = Pir()
