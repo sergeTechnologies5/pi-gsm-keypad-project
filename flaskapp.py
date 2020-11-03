@@ -58,6 +58,7 @@ class KeyPad:
                         status = 'Found'
                     else:
                         status = 'Not Found'
+                        requests.post('http://localhost:5000/bazar')
                     data = {'username':self.name,'status':status,'password':str("".join(password))}
                     r = requests.post(self.url,data=data)
                     password.clear()
@@ -126,7 +127,7 @@ def bazarM():
     GPIO.output(bazar, GPIO.LOW) # Turn on
     sleep(1)
     GPIO.output(bazar, GPIO.HIGH) # Turn off
-    sleep(1)
+    sleep(2)
     GPIO.output(bazar, GPIO.LOW) # Turn on
     return "bazar on"
 
