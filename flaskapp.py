@@ -82,6 +82,21 @@ def sendMessage():
     content = request.get_json()
     message = content['message']
     number  = content['number']
+
+    port.write(b'ATE0'+b'\r\n') # Disable the Echo
+    rcv = port.read(10)
+    print (rcv)
+    time.sleep(1)
+
+    port.write(b'AT+CMGF=1'+b'\r\n') # Select Message format as Text mode
+    rcv = port.read(10)
+    print (rcv)
+    time.sleep(1)
+    
+    port.write(b'AT+CNMI=2,2,0,0,0'+b'\r\n') # New SMS Message Indications
+    rcv = port.read(10)
+    print (rcv)
+    time.sleep(1)
     # Sending a message to a particular Number
     port.write(b'AT+CMGS='+str(number).encode()+b'\r\n')
     rcv = port.read(10)
