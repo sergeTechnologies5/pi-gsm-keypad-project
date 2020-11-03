@@ -12,6 +12,7 @@ import os
 from time import sleep  # Import the sleep function from the time module
 
 from pirtest import Pir
+from pirtest import bazar
 
 #RELAY_1 = 16 #G3
 Relay1 = 27
@@ -119,6 +120,15 @@ def relayTwo():
     GPIO.output(Relay2, GPIO.HIGH) # Turn off
     sleep(1)
     return "Relay two Commanded"
+
+@app.route('/bazar', methods=['POST'])
+def bazarM():
+    GPIO.output(bazar, GPIO.LOW) # Turn on
+    sleep(1)
+    GPIO.output(bazar, GPIO.HIGH) # Turn off
+    sleep(1)
+    GPIO.output(bazar, GPIO.LOW) # Turn on
+    return "bazar on"
 
 def main():
     """
