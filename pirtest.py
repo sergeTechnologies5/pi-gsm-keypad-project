@@ -31,7 +31,7 @@ class Pir:
                 time.sleep(0.1)
                 if not sent:
                     # send
-                    data = {"message":"Someone is standing at the door of the vault","number":"254714195834"}
+                    data = {'message':'Someone is standing at the door of the vault','number':'254714195834'}
                     r = requests.post("http://localhost:5000/send",data=data)
                     sent = True
 
