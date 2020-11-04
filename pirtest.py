@@ -33,7 +33,7 @@ class Pir:
                 if not sent:
                     # send
                     data = {'message':'Someone is standing at the door of the vault','number':'254714195834'}
-                    r = requests.post("http://localhost:5000/send",data=json.dumps(data))
+                    r = requests.post("http://localhost:5000/send",json=json.dumps(data))
                     sent = True
 
     def run(self):
