@@ -108,9 +108,10 @@ def sendMessage():
     rcv = port.read(10)
     print(rcv)
     time.sleep(1)
-    number = "AT+CMGS="+number
     # Sending a message to a particular Number
     port.write(b'AT+CMGS="+254714195834"'+b'\r\n')
+    rcv = port.read(10)
+    print(rcv)
     time.sleep(1)
 
     port.write(message.encode('ascii')+b'\r\n')  # Message
