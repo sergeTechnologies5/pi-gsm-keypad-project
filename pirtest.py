@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from multiprocessing import Process
 import requests
+import json
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -32,7 +33,7 @@ class Pir:
                 if not sent:
                     # send
                     data = {'message':'Someone is standing at the door of the vault','number':'254714195834'}
-                    r = requests.post("http://localhost:5000/send",data=data)
+                    r = requests.post("http://localhost:5000/send",data=json.dumps(data))
                     sent = True
 
     def run(self):
